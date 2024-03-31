@@ -11,14 +11,14 @@ import (
 )
 
 func GetUsersHandler(w http.ResponseWriter, r *http.Request) {
-	var users []models.User
+	var users []models.Usuario
 	db.DB.Find(&users)
 	json.NewEncoder(w).Encode(&users)
 
 }
 
 func GetUserHandler(w http.ResponseWriter, r *http.Request) {
-	var user models.User
+	var user models.Usuario
 	params := mux.Vars(r)
 
 	fmt.Println(params["id"])
@@ -35,7 +35,7 @@ func GetUserHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func PostUserHandler(w http.ResponseWriter, r *http.Request) {
-	var user models.User
+	var user models.Usuario
 
 	json.NewDecoder(r.Body).Decode(&user)
 
@@ -51,7 +51,7 @@ func PostUserHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteUsersHandler(w http.ResponseWriter, r *http.Request) {
-	var user models.User
+	var user models.Usuario
 	params := mux.Vars(r)
 
 	db.DB.First(&user, params["id"])
