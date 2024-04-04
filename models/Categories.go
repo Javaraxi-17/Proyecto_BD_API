@@ -1,18 +1,18 @@
 package models
 
-import "gorm.io/gorm"
+
 
 type CategoriaPropiedad struct {
-	gorm.Model
-
-	Nombre      string `gorm:"type:varchar(100);not null"`
-	Descripcion string `gorm:"type:varchar(255)"`
-	// Casas       []Casa // Relationship with Casas through CasaCategoria
+    ID          uint
+    Nombre      string `gorm:"type:varchar(100);not null;unique"`
+    Descripcion string `gorm:"type:varchar(255)"`
+    Casas       []CasaCategoria `gorm:"foreignKey:IDCategoria"`
 }
 
 type CasaCategoria struct {
-	gorm.Model
-
-	IDCasa      uint
-	IDCategoria uint
+    ID           uint
+    IDCasa       uint
+    IDCategoria  uint
+    Casa         Casa            `gorm:"foreignKey:IDCasa"`
+    Categoria    CategoriaPropiedad `gorm:"foreignKey:IDCategoria"`
 }

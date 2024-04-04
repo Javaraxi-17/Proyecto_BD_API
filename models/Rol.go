@@ -1,9 +1,9 @@
 package models
 
-import "gorm.io/gorm"
+
 
 type Rol struct {
-	gorm.Model
-
-	Nombre string `gorm:"type:varchar(100);not null"`
+    ID uint           `gorm:"primaryKey;autoIncrement"`
+    Nombre   string    `gorm:"type:varchar(100);not null"`
+    Usuarios []Usuario `gorm:"many2many:usuarios_roles;"`
 }
