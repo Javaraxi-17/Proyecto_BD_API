@@ -5,7 +5,7 @@ import (
 )
 
 type Usuario struct {
-	ID             uint   `gorm:"primaryKey"`
+	ID_usuario     uint   `gorm:"primaryKey;column:ID_usuario"`
 	Nombre         string `gorm:"type:varchar(100);not null"`
 	Correo         string `gorm:"type:varchar(100);not null;unique"`
 	Contrasena     string `gorm:"type:varchar(100);not null"`

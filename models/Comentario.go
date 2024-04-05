@@ -8,7 +8,7 @@ import (
 
 
 type Comentario struct {
-    ID              uint
+    ID_comentario   uint `gorm:"primaryKey;column:ID_comentario"`
     IDUsuario       uint
     IDCasa          uint
     IDReserva       uint       `gorm:"index"`

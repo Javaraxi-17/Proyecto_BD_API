@@ -5,7 +5,7 @@ import (
 )
 
 type Reserva struct {
-	ID              uint
+	ID_reserva      uint `gorm:"primaryKey;column:ID_reserva"`
 	IDUsuario       uint
 	IDCasa          uint
 	FechaHoraInicio time.Time
@@ -18,7 +18,7 @@ type Reserva struct {
 }
 
 type ReservaHistorica struct {
-	ID              uint
+	ID_reserva_historica  uint `gorm:"primaryKey;column:ID_reserva_historica"`
 	IDUsuario       uint
 	IDCasa          uint
 	FechaHoraInicio time.Time

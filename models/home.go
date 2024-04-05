@@ -2,7 +2,7 @@ package models
 
 
 type Casa struct {
-    ID                 uint
+    ID_casa            uint `gorm:"primaryKey;column:ID_casa"`
     IDPropietario      uint
     IDAgente           uint
     Direccion          string    `gorm:"type:varchar(255);not null"`

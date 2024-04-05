@@ -7,7 +7,7 @@ import (
 )
 
 type Transaccion struct {
-    ID              uint
+    ID_transaccion  uint `gorm:"primaryKey;column:ID_transaccion"`
     IDUsuario       uint
     TipoTransaccion string    `gorm:"type:varchar(100);not null"`
     Monto           float64

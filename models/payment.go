@@ -8,7 +8,7 @@ import (
 
 
 type PagoPendiente struct {
-    ID              uint
+    ID_pago_pendiente uint `gorm:"primaryKey;column:ID_pago_pendiente"`
     IDReserva       uint
     Monto           float64
     Descripcion     string    `gorm:"type:varchar(255)"`

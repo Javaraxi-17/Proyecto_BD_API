@@ -3,7 +3,7 @@ package models
 
 
 type Propietario struct {
-    ID               uint
+    ID_propietario   uint `gorm:"primaryKey;column:ID_propietario"`
     Nombre           string `gorm:"type:varchar(100);not null"`
     Correo           string `gorm:"type:varchar(100);not null;unique"`
     Contrasena       string `gorm:"type:varchar(100);not null"`

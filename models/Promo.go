@@ -7,7 +7,7 @@ import (
 )
 
 type Promocion struct {
-    ID              uint
+    ID_promocion    uint `gorm:"primaryKey;column:ID_promocion"`
     CodigoPromocion string    `gorm:"type:varchar(100);not null;unique"`
     Descuento       float64
     FechaInicio     time.Time
@@ -17,7 +17,7 @@ type Promocion struct {
 }
 
 type AplicacionPromocion struct {
-    ID               uint
+    ID_aplicacion_promocion uint `gorm:"primaryKey;column:ID_aplicacion_promocion"`
     IDReserva        uint
     IDPromocion      uint
     DescuentoAplicado float64
