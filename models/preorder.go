@@ -12,19 +12,20 @@ type Reserva struct {
 	FechaHoraFin    time.Time
 	EstadoReserva   string `gorm:"type:varchar(100);not null"`
 	PrecioTotal     float64
-	Usuario         Usuario      `gorm:"foreignKey:IDUsuario"`
-	Casa            Casa         `gorm:"foreignKey:IDCasa"`
-	Comentarios     []Comentario `gorm:"foreignKey:IDReserva"`
+	Usuario Usuario `gorm:"foreignKey:IDUsuario"`
+    Casa    Casa    `gorm:"foreignKey:IDCasa"`
+	// PagosPendientes []PagoPendiente `gorm:"foreignKey:IDReserva"`
+	// AplicacionesPromocion []AplicacionPromocion `gorm:"foreignKey:IDReserva"`
 }
 
 type ReservaHistorica struct {
 	ID_reserva_historica  uint `gorm:"primaryKey;column:ID_reserva_historica"`
-	IDUsuario       uint
+	IDUsuario       uint       
 	IDCasa          uint
 	FechaHoraInicio time.Time
 	FechaHoraFin    time.Time
 	EstadoReserva   string `gorm:"type:varchar(100);not null"`
 	PrecioTotal     float64
-	Usuario         Usuario `gorm:"foreignKey:IDUsuario"`
-	Casa            Casa    `gorm:"foreignKey:IDCasa"`
+	Usuario Usuario `gorm:"foreignKey:IDUsuario"`
+    Casa    Casa    `gorm:"foreignKey:IDCasa"`
 }

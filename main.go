@@ -1,5 +1,12 @@
 package main
 
+// Antes de ejecutar main.go, asegúrate de que las relaciones estén comentadas.
+
+// Después de haber ejecutado main.go y creado las tablas, descomenta las relaciones.
+	// Elimina los comentarios de las relaciones en tus modelos para que las asociaciones funcionen correctamente.
+
+
+
 import (
 	"net/http"
 
@@ -12,11 +19,6 @@ import (
 func main() {
 	db.DBConn()
 
-	db.DB.AutoMigrate(models.Task{})
-	db.DB.AutoMigrate(models.Usuario{})
-	db.DB.AutoMigrate(models.Rol{})
-	db.DB.AutoMigrate(models.Propietario{})
-	db.DB.AutoMigrate(models.AgenteInmobiliario{})
 	db.DB.AutoMigrate(models.Pais{})
 	db.DB.AutoMigrate(models.Ciudad{})
 	db.DB.AutoMigrate(models.Barrio{})
@@ -39,6 +41,15 @@ func main() {
 	db.DB.AutoMigrate(models.HistorialPrecio{})
 	db.DB.AutoMigrate(models.SolicitudAdministrativa{})
 	db.DB.AutoMigrate(models.Auditoria{})
+	db.DB.AutoMigrate(models.Usuario{})
+	db.DB.AutoMigrate(models.UsuarioRol{})
+	db.DB.AutoMigrate(models.Rol{})
+	db.DB.AutoMigrate(models.Propietario{})
+	db.DB.AutoMigrate(models.AgenteInmobiliario{})
+
+
+
+
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", routes.HomeHandler)

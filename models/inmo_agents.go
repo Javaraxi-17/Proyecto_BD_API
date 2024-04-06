@@ -7,5 +7,6 @@ type AgenteInmobiliario struct {
     Correo           string `gorm:"type:varchar(100);not null;unique"`
     Contrasena       string `gorm:"type:varchar(100);not null"`
     DetallesContacto string `gorm:"type:varchar(255)"`
-    Casas            []Casa `gorm:"foreignKey:IDAgente"`
+    // Casas    []Casa `gorm:"foreignKey:IDAgente"`
+    // Comisiones     []ComisionAgente `gorm:"foreignKey:IDAgente"`
 }

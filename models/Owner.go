@@ -3,10 +3,10 @@ package models
 
 
 type Propietario struct {
-    ID_propietario   uint `gorm:"primaryKey;column:ID_propietario"`
-    Nombre           string `gorm:"type:varchar(100);not null"`
-    Correo           string `gorm:"type:varchar(100);not null;unique"`
-    Contrasena       string `gorm:"type:varchar(100);not null"`
-    DetallesContacto string `gorm:"type:varchar(255)"`
-    Casas            []Casa `gorm:"foreignKey:IDPropietario"`
+    IDPropietario     uint   `gorm:"primaryKey;column:id_propietario"`
+    Nombre            string `gorm:"column:nombre;type:varchar"`
+    CorreoElectronico string `gorm:"column:correo_electronico;type:varchar"`
+    Contrasena        string `gorm:"column:contrasena;type:varchar"`
+    DetallesContacto  string `gorm:"column:detalles_contacto;type:varchar"`
+    // Casas         []Casa `gorm:"foreignKey:IDPropietario"`
 }

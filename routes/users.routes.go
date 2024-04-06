@@ -24,7 +24,7 @@ func GetUserHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(params["id"])
 
 	db.DB.First(&user, params["id"])
-	if user.ID == 0 {
+	if user.Id_usuario == 0 {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("user not found"))
 		return
@@ -55,7 +55,7 @@ func DeleteUsersHandler(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	db.DB.First(&user, params["id"])
-	if user.ID == 0 {
+	if user.Id_usuario == 0 {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("user not found"))
 		return
