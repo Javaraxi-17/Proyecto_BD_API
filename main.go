@@ -3,11 +3,10 @@ package main
 // Antes de ejecutar main.go, asegúrate de que las relaciones estén comentadas.
 
 // Después de haber ejecutado main.go y creado las tablas, descomenta las relaciones.
-	// Elimina los comentarios de las relaciones en tus modelos para que las asociaciones funcionen correctamente.
-
-
+// Elimina los comentarios de las relaciones en tus modelos para que las asociaciones funcionen correctamente.
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/Javaraxi-17/Proyecto_BD_API/db"
@@ -16,41 +15,49 @@ import (
 	"github.com/gorilla/mux"
 )
 
+func migrateModels() {
+	db.DB.AutoMigrate(
+		&models.Pais{},
+		&models.Ciudad{},
+		&models.Barrio{},
+		&models.CategoriaPropiedad{},
+		&models.Casa{},
+		&models.CasaCategoria{},
+		&models.Reserva{},
+		&models.Transaccion{},
+		&models.Comentario{},
+		&models.ReservaHistorica{},
+		&models.PagoPendiente{},
+		&models.Promocion{},
+		&models.AplicacionPromocion{},
+		&models.Alerta{},
+		&models.BitacoraAcceso{},
+		&models.BitacoraActividad{},
+		&models.Configuracion{},
+		&models.ComisionAgente{},
+		&models.SeguimientoCasa{},
+		&models.HistorialPrecio{},
+		&models.SolicitudAdministrativa{},
+		&models.Auditoria{},
+		&models.Usuario{},
+		&models.UsuarioRol{},
+		&models.Rol{},
+		&models.Propietario{},
+		&models.AgenteInmobiliario{},
+	)
+}
+
 func main() {
+	// Conectar a la base de datos
 	db.DBConn()
 
-	db.DB.AutoMigrate(models.Pais{})
-	db.DB.AutoMigrate(models.Ciudad{})
-	db.DB.AutoMigrate(models.Barrio{})
-	db.DB.AutoMigrate(models.CategoriaPropiedad{})
-	db.DB.AutoMigrate(models.Casa{})
-	db.DB.AutoMigrate(models.CasaCategoria{})
-	db.DB.AutoMigrate(models.Reserva{})
-	db.DB.AutoMigrate(models.Transaccion{})
-	db.DB.AutoMigrate(models.Comentario{})
-	db.DB.AutoMigrate(models.ReservaHistorica{})
-	db.DB.AutoMigrate(models.PagoPendiente{})
-	db.DB.AutoMigrate(models.Promocion{})
-	db.DB.AutoMigrate(models.AplicacionPromocion{})
-	db.DB.AutoMigrate(models.Alerta{})
-	db.DB.AutoMigrate(models.BitacoraAcceso{})
-	db.DB.AutoMigrate(models.BitacoraActividad{})
-	db.DB.AutoMigrate(models.Configuracion{})
-	db.DB.AutoMigrate(models.ComisionAgente{})
-	db.DB.AutoMigrate(models.SeguimientoCasa{})
-	db.DB.AutoMigrate(models.HistorialPrecio{})
-	db.DB.AutoMigrate(models.SolicitudAdministrativa{})
-	db.DB.AutoMigrate(models.Auditoria{})
-	db.DB.AutoMigrate(models.Usuario{})
-	db.DB.AutoMigrate(models.UsuarioRol{})
-	db.DB.AutoMigrate(models.Rol{})
-	db.DB.AutoMigrate(models.Propietario{})
-	db.DB.AutoMigrate(models.AgenteInmobiliario{})
+	// Migrar modelos
+	migrateModels()
 
+	// Insertar datos de ejemplo
+	models.InsertDataCategoriasCasa()
 
-
-
-
+	// Configurar rutas
 	r := mux.NewRouter()
 	r.HandleFunc("/", routes.HomeHandler)
 	r.HandleFunc("/users", routes.GetUsersHandler).Methods("GET")
@@ -58,6 +65,7 @@ func main() {
 	r.HandleFunc("/users", routes.PostUserHandler).Methods("POST")
 	r.HandleFunc("/users/{id}", routes.DeleteUsersHandler).Methods("DELETE")
 
+	// Iniciar el servidor
+	log.Println("Starting server on :3000")
 	http.ListenAndServe(":3000", r)
-
 }
