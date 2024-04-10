@@ -55,7 +55,13 @@ func main() {
 	migrateModels()
 
 	// Insertar datos de ejemplo
-	models.InsertDataCategoriasCasa()
+	// models.InsertDataCategoriasCasa()
+	// models.InsertarUsuarios()
+
+	// models.InsertarRoles()
+	// models.InsertarPaises()
+	// models.InsertarCiudades()
+	// models.InsertarBarrios()
 
 	// Configurar rutas
 	r := mux.NewRouter()

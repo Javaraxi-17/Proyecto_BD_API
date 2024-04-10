@@ -30,7 +30,7 @@ type Casa struct {
 	Reservas           []Reserva            `gorm:"foreignKey:IDCasa"`
 	ReservasHistoricas []ReservaHistorica   `gorm:"foreignKey:IDCasa"`
 	SeguimientosCasa   []SeguimientoCasa    `gorm:"foreignKey:IDCasa"`
-}
+ }
 
 type SeguimientoCasa struct {
 	ID_seguimiento_casa uint `gorm:"primaryKey;column:ID_seguimiento_casa"`
