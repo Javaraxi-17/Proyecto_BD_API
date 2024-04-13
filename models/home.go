@@ -19,17 +19,12 @@ type Casa struct {
 	AreaMetrosCuadrados int
 	Fotos               string `gorm:"type:text"`
 
-	Comentarios      []Comentario      `gorm:"foreignKey:IDCasa"`
-	HistorialPrecios []HistorialPrecio `gorm:"foreignKey:IDCasa"`
-
-	Propietario        Propietario        `gorm:"foreignKey:IDPropietario"`
-	AgenteInmobiliario AgenteInmobiliario `gorm:"foreignKey:IDAgente"`
-	Ciudad             Ciudad             `gorm:"foreignKey:IDCiudad"`
-
-	Categorias         []CategoriaPropiedad `gorm:"many2many:casa_categoria;foreignKey:ID_casa;joinForeignKey:ID_casa;References:ID_categoria_propiedad;joinReferences:ID_categoria_propiedad"`
-	Reservas           []Reserva            `gorm:"foreignKey:IDCasa"`
-	ReservasHistoricas []ReservaHistorica   `gorm:"foreignKey:IDCasa"`
-	SeguimientosCasa   []SeguimientoCasa    `gorm:"foreignKey:IDCasa"`
+	// Comentarios      []Comentario      `gorm:"foreignKey:IDCasa"`
+	// HistorialPrecios []HistorialPrecio `gorm:"foreignKey:IDCasa"`
+	// Categorias        []CategoriaPropiedad `gorm:"many2many:casa_categoria;foreignKey:ID_casa;joinForeignKey:ID_casa;References:ID_categoria_propiedad;joinReferences:ID_categoria_propiedad"`
+	// Reservas           []Reserva            `gorm:"foreignKey:IDCasa"`
+	// ReservasHistoricas []ReservaHistorica   `gorm:"foreignKey:IDCasa"`
+	// SeguimientosCasa   []SeguimientoCasa    `gorm:"foreignKey:IDCasa"`
  }
 
 type SeguimientoCasa struct {
@@ -38,6 +33,4 @@ type SeguimientoCasa struct {
 	IDCasa              uint
 	FechaHoraVisita     time.Time
 	InteresExpresado    string  `gorm:"type:text"`
-	Usuario             Usuario `gorm:"foreignKey:IDUsuario"`
-	Casa                Casa    `gorm:"foreignKey:IDCasa"`
 }

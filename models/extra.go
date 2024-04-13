@@ -9,7 +9,6 @@ type Alerta struct {
 	IDUsuario         uint
 	DescripcionAlerta string `gorm:"type:text"`
 	FechaHoraCreacion time.Time
-	Usuario Usuario `gorm:"foreignKey:IDUsuario"`
 }
 
 
@@ -26,7 +25,6 @@ type HistorialPrecio struct {
 	IDCasa              uint
 	Precio              float64
 	FechaCambio         time.Time
-	Casa 				Casa `gorm:"foreignKey:IDCasa"`
 }
 
 type SolicitudAdministrativa struct {
@@ -35,7 +33,6 @@ type SolicitudAdministrativa struct {
 	DescripcionSolicitud        string `gorm:"type:text"`
 	EstadoSolicitud             string `gorm:"type:varchar(100);not null"`
 	FechaHoraSolicitud          time.Time
-	Usuario 					Usuario `gorm:"foreignKey:IDUsuario"`
 }
 
 

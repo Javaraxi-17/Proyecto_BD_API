@@ -6,5 +6,5 @@ type Propietario struct {
 	CorreoElectronico string `gorm:"column:correo_electronico;type:varchar"`
 	Contrasena        string `gorm:"column:contrasena;type:varchar"`
 	DetallesContacto  string `gorm:"column:detalles_contacto;type:varchar"`
-	Casas             []Casa `gorm:"foreignKey:IDPropietario"`
+	// Casas             []Casa `gorm:"foreignKey:IDPropietario"`
 }

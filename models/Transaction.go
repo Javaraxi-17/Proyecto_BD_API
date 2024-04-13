@@ -12,6 +12,5 @@ type Transaccion struct {
 	FechaHora         time.Time
 	MetodoPago        string           `gorm:"type:varchar(100)"`
 	EstadoTransaccion string           `gorm:"type:varchar(100);not null"`
-	Usuario           Usuario          `gorm:"foreignKey:IDUsuario"`
-	Comisiones        []ComisionAgente `gorm:"foreignKey:IDTransaccion"`
+	// Comisiones        []ComisionAgente `gorm:"foreignKey:IDTransaccion"`
 }

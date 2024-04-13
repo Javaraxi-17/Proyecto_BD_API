@@ -11,7 +11,7 @@ type Promocion struct {
 	FechaInicio     time.Time
 	FechaFin        time.Time
 	Condiciones     string                `gorm:"type:text"`
-	Aplicaciones    []AplicacionPromocion `gorm:"foreignKey:IDPromocion"`
+	// Aplicaciones    []AplicacionPromocion `gorm:"foreignKey:IDPromocion"`
 }
 
 type AplicacionPromocion struct {
@@ -19,6 +19,4 @@ type AplicacionPromocion struct {
 	IDReserva               uint
 	IDPromocion             uint
 	DescuentoAplicado       float64
-	Reserva                 Reserva   `gorm:"foreignKey:IDReserva"`
-	Promocion               Promocion `gorm:"foreignKey:IDPromocion"`
 }

@@ -14,7 +14,6 @@ type PagoPendiente struct {
     Descripcion     string    `gorm:"type:varchar(255)"`
     FechaVencimiento time.Time
     EstadoPago      string    `gorm:"type:varchar(100);not null"`
-    Reserva         Reserva `gorm:"foreignKey:IDReserva"`
 }
 
 
@@ -25,7 +24,5 @@ type ComisionAgente struct {
 	MontoComision      float64
 	FechaPago          time.Time
     
-	AgenteInmobiliario AgenteInmobiliario `gorm:"foreignKey:IDAgente"`
-    Transaccion        Transaccion        `gorm:"foreignKey:IDTransaccion"`
 }
 

@@ -14,8 +14,6 @@ type Comentario struct {
     Comentario      string     `gorm:"type:text"`
     Calificacion    int
     FechaPublicacion time.Time
-    Usuario          Usuario `gorm:"foreignKey:IDUsuario"`
-    Casa             Casa    `gorm:"foreignKey:IDCasa"`
 
 }
 

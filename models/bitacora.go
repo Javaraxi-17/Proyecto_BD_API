@@ -11,7 +11,6 @@ type BitacoraAcceso struct {
 	FechaHoraAcceso    time.Time
 	DireccionIP        string  `gorm:"type:varchar(100);not null"`
 	NavegadorUtilizado string  `gorm:"type:varchar(255);not null"`
-	Usuario 			Usuario `gorm:"foreignKey:IDUsuario"`
 	
 }
 
@@ -20,16 +19,14 @@ type BitacoraActividad struct {
 	IDUsuario             uint
 	DescripcionActividad  string `gorm:"type:text"`
 	FechaHoraActividad    time.Time
-	Usuario Usuario `gorm:"foreignKey:IDUsuario"`
 }
 
 
 type Auditoria struct {
 	ID_auditoria        uint   `gorm:"primaryKey;column:ID_auditoria"`
-	IDUsuario              string `gorm:"type:varchar(100);not null"`
-	AccionRealizada     string `gorm:"type:varchar(100);not null"`
+	IDUsuario           uint
+	AccionRealizada     string 
 	FechaHoraAccion     time.Time
-	TablaAfectada       string `gorm:"type:varchar(100);not null"`
+	TablaAfectada       string 
 	DetallesAdicionales string `gorm:"type:text"`
-	Usuario 			Usuario `gorm:"foreignKey:IDUsuario"`
 }

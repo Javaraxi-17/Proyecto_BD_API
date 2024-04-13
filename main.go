@@ -22,7 +22,6 @@ func migrateModels() {
 		&models.Barrio{},
 		&models.CategoriaPropiedad{},
 		&models.Casa{},
-		&models.CasaCategoria{},
 		&models.Reserva{},
 		&models.Transaccion{},
 		&models.Comentario{},
@@ -40,7 +39,6 @@ func migrateModels() {
 		&models.SolicitudAdministrativa{},
 		&models.Auditoria{},
 		&models.Usuario{},
-		&models.UsuarioRol{},
 		&models.Rol{},
 		&models.Propietario{},
 		&models.AgenteInmobiliario{},
@@ -54,14 +52,15 @@ func main() {
 	// Migrar modelos
 	migrateModels()
 
-	// Insertar datos de ejemplo
+	// // Insertar datos de ejemplo
+	
 	// models.InsertDataCategoriasCasa()
 	// models.InsertarUsuarios()
-
 	// models.InsertarRoles()
 	// models.InsertarPaises()
 	// models.InsertarCiudades()
-	// models.InsertarBarrios()
+	//  models.InsertarBarrios()
+	// models.InsertarCategoriasPropiedad()
 
 	// Configurar rutas
 	r := mux.NewRouter()
