@@ -17,6 +17,9 @@ import (
 
 func migrateModels() {
 	db.DB.AutoMigrate(
+		&models.AgenteInmobiliario{},
+		&models.Propietario{},
+		&models.Usuario{},
 		&models.Pais{},
 		&models.Ciudad{},
 		&models.Barrio{},
@@ -38,10 +41,7 @@ func migrateModels() {
 		&models.HistorialPrecio{},
 		&models.SolicitudAdministrativa{},
 		&models.Auditoria{},
-		&models.Usuario{},
 		&models.Rol{},
-		&models.Propietario{},
-		&models.AgenteInmobiliario{},
 	)
 }
 
@@ -53,13 +53,13 @@ func main() {
 	migrateModels()
 
 	// // Insertar datos de ejemplo
-	
+
 	// models.InsertDataCategoriasCasa()
 	// models.InsertarUsuarios()
 	// models.InsertarRoles()
 	// models.InsertarPaises()
 	// models.InsertarCiudades()
-	//  models.InsertarBarrios()
+	// models.InsertarBarrios()
 	// models.InsertarCategoriasPropiedad()
 
 	// Configurar rutas
@@ -69,6 +69,18 @@ func main() {
 	r.HandleFunc("/users/{id}", routes.GetUserHandler).Methods("GET")
 	r.HandleFunc("/users", routes.PostUserHandler).Methods("POST")
 	r.HandleFunc("/users/{id}", routes.DeleteUsersHandler).Methods("DELETE")
+
+	//owner
+	r.HandleFunc("/owners", routes.GetOwnersHandler).Methods("GET")
+	r.HandleFunc("/owners/{id}", routes.GetOwnerHandler).Methods("GET")
+	r.HandleFunc("/owners", routes.PostOwnerHandler).Methods("POST")
+	r.HandleFunc("/owners/{id}", routes.DeleteOwnerHandler).Methods("DELETE")
+
+	//Home
+	r.HandleFunc("/homes", routes.GetHomesHandler).Methods("GET")
+	r.HandleFunc("/homes/{id}", routes.GetHomeHandler).Methods("GET")
+	r.HandleFunc("/homes", routes.PostHomeHandler).Methods("POST")
+	r.HandleFunc("/homes/{id}", routes.DeleteHomesHandler).Methods("DELETE")
 
 	// Iniciar el servidor
 	log.Println("Starting server on :3000")

@@ -12,7 +12,7 @@ import (
 
 func GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 	var users []models.Usuario
-	fmt.Println(users)
+	fmt.Sprintln(users)
 	db.DB.Find(&users)
 	json.NewEncoder(w).Encode(&users)
 
@@ -21,6 +21,7 @@ func GetUsersHandler(w http.ResponseWriter, r *http.Request) {
 func GetUserHandler(w http.ResponseWriter, r *http.Request) {
 	var user models.Usuario
 	params := mux.Vars(r)
+	fmt.Println("estoy aqui")
 
 	fmt.Println(params["id"])
 

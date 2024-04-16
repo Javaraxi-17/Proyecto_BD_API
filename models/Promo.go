@@ -11,7 +11,7 @@ type Promocion struct {
 	FechaInicio     time.Time
 	FechaFin        time.Time
 	Condiciones     string                `gorm:"type:text"`
-	// Aplicaciones    []AplicacionPromocion `gorm:"foreignKey:IDPromocion"`
+	Aplicaciones    []AplicacionPromocion `gorm:"foreignKey:IDPromocion"`
 }
 
 type AplicacionPromocion struct {
