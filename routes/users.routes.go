@@ -67,3 +67,34 @@ func DeleteUsersHandler(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusAccepted)
 
 }
+
+func AuthenticateUserHandler(w http.ResponseWriter, r *http.Request) {
+	var creds struct {
+		Nombre     string `json:"username"`
+		Contrasena string `json:"password"`
+	}
+
+	err := json.NewDecoder(r.Body).Decode(&creds)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Invalid request payload"))
+		return
+	}
+
+	var user models.Usuario
+	db.DB.Where("Nombre = ?", creds.Nombre).First(&user)
+	if user.Id_usuario == 0 {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("User not found"))
+		return
+	}
+
+	if user.Contrasena != creds.Contrasena {
+		w.WriteHeader(http.StatusUnauthorized)
+		w.Write([]byte("Invalid Contrasena"))
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("Authentication successful"))
+}

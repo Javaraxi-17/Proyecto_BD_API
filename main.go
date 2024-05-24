@@ -1,10 +1,5 @@
 package main
 
-// Antes de ejecutar main.go, asegúrate de que las relaciones estén comentadas.
-
-// Después de haber ejecutado main.go y creado las tablas, descomenta las relaciones.
-// Elimina los comentarios de las relaciones en tus modelos para que las asociaciones funcionen correctamente.
-
 import (
 	"log"
 	"net/http"
@@ -13,6 +8,7 @@ import (
 	"github.com/Javaraxi-17/Proyecto_BD_API/models"
 	"github.com/Javaraxi-17/Proyecto_BD_API/routes"
 	"github.com/gorilla/mux"
+	"github.com/rs/cors" // Importa la biblioteca cors
 )
 
 func migrateModels() {
@@ -53,8 +49,6 @@ func main() {
 	migrateModels()
 
 	// Insertar datos de ejemplo
-
-	// models.InsertDataCategoriasCasa()
 	models.InsertarUsuarios()
 	models.InsertarRoles()
 	models.InsertarPaises()
@@ -69,14 +63,15 @@ func main() {
 	r.HandleFunc("/users/{id}", routes.GetUserHandler).Methods("GET")
 	r.HandleFunc("/users", routes.PostUserHandler).Methods("POST")
 	r.HandleFunc("/users/{id}", routes.DeleteUsersHandler).Methods("DELETE")
+	r.HandleFunc("/login", routes.AuthenticateUserHandler).Methods("POST")
 
-	//owner
+	// Owner
 	r.HandleFunc("/owners", routes.GetOwnersHandler).Methods("GET")
 	r.HandleFunc("/owners/{id}", routes.GetOwnerHandler).Methods("GET")
 	r.HandleFunc("/owners", routes.PostOwnerHandler).Methods("POST")
 	r.HandleFunc("/owners/{id}", routes.DeleteOwnerHandler).Methods("DELETE")
 
-	//Home
+	// Home
 	r.HandleFunc("/homes", routes.GetHomesHandler).Methods("GET")
 	r.HandleFunc("/homes/{id}", routes.GetHomeHandler).Methods("GET")
 	r.HandleFunc("/homes", routes.PostHomeHandler).Methods("POST")
@@ -88,19 +83,19 @@ func main() {
 	r.HandleFunc("/roles", routes.PostRolHandler).Methods("POST")
 	r.HandleFunc("/roles/{id}", routes.DeleteRolesHandler).Methods("DELETE")
 
-	// transaction
+	// Transaction
 	r.HandleFunc("/transactions", routes.GetTransactionsHandler).Methods("GET")
 	r.HandleFunc("/transactions/{id}", routes.GetTransactionHandler).Methods("GET")
 	r.HandleFunc("/transactions", routes.PostTransactionHandler).Methods("POST")
 	r.HandleFunc("/transactions/{id}", routes.DeleteTransactionsHandler).Methods("DELETE")
 
-	// agente inmobiliario
+	// Agente inmobiliario
 	r.HandleFunc("/agents", routes.GetAgentesInmobiliariosHandler).Methods("GET")
 	r.HandleFunc("/agents/{id}", routes.GetAgenteInmobiliarioHandler).Methods("GET")
 	r.HandleFunc("/agents", routes.PostAgenteInmobiliarioHandler).Methods("POST")
 	r.HandleFunc("/agents/{id}", routes.DeleteAgentesInmobiliariosHandler).Methods("DELETE")
 
-	// promocion
+	// Promocion
 	r.HandleFunc("/promos", routes.GetPromocionesHandler).Methods("GET")
 	r.HandleFunc("/promos/{id}", routes.GetPromocionHandler).Methods("GET")
 	r.HandleFunc("/promos", routes.PostPromocionHandler).Methods("POST")
@@ -148,55 +143,55 @@ func main() {
 	r.HandleFunc("/configuracion", routes.PostConfiguracionHandler).Methods("POST")
 	r.HandleFunc("/configuracion/{id}", routes.DeleteConfiguracionesHandler).Methods("DELETE")
 
-	// historial precio
+	// Historial precio
 	r.HandleFunc("/historial", routes.GetHistorialPreciosHandler).Methods("GET")
 	r.HandleFunc("/historial/{id}", routes.GetHistorialPrecioHandler).Methods("GET")
 	r.HandleFunc("/historial", routes.PostHistorialPrecioHandler).Methods("POST")
 	r.HandleFunc("/historial/{id}", routes.DeleteHistorialPreciosHandler).Methods("DELETE")
 
-	// solicitud administrativa
+	// Solicitud administrativa
 	r.HandleFunc("/solicitud", routes.GetSolicitudesAdministrativasHandler).Methods("GET")
 	r.HandleFunc("/solicitud/{id}", routes.GetSolicitudAdministrativaHandler).Methods("GET")
 	r.HandleFunc("/solicitud", routes.PostSolicitudAdministrativaHandler).Methods("POST")
 	r.HandleFunc("/solicitud/{id}", routes.DeleteSolicitudesAdministrativasHandler).Methods("DELETE")
 
-	// paises
+	// Paises
 	r.HandleFunc("/paises", routes.GetPaisesHandler).Methods("GET")
 	r.HandleFunc("/paises/{id}", routes.GetPaisHandler).Methods("GET")
 	r.HandleFunc("/paises", routes.PostPaisHandler).Methods("POST")
 	r.HandleFunc("/paises/{id}", routes.DeletePaisesHandler).Methods("DELETE")
 
-	// comentarios
+	// Comentarios
 	r.HandleFunc("/comentario", routes.GetComentariosHandler).Methods("GET")
 	r.HandleFunc("/comentario/{id}", routes.GetComentarioHandler).Methods("GET")
 	r.HandleFunc("/comentario", routes.PostComentarioHandler).Methods("POST")
 	r.HandleFunc("/comentario/{id}", routes.DeleteComentariosHandler).Methods("DELETE")
 
-	// ciudad
+	// Ciudad
 	r.HandleFunc("/ciudad", routes.GetCiudadesHandler).Methods("GET")
 	r.HandleFunc("/ciudad/{id}", routes.GetCiudadHandler).Methods("GET")
 	r.HandleFunc("/ciudad", routes.PostCiudadHandler).Methods("POST")
 	r.HandleFunc("/ciudad/{id}", routes.DeleteCiudadesHandler).Methods("DELETE")
 
-	// barrio
+	// Barrio
 	r.HandleFunc("/barrio", routes.GetBarriosHandler).Methods("GET")
 	r.HandleFunc("/barrio/{id}", routes.GetBarrioHandler).Methods("GET")
 	r.HandleFunc("/barrio", routes.PostBarrioHandler).Methods("POST")
 	r.HandleFunc("/barrio/{id}", routes.DeleteBarriosHandler).Methods("DELETE")
 
-	// categoria propiedad
+	// Categoria propiedad
 	r.HandleFunc("/cpropiedad", routes.GetCategoriaPropiedadesHandler).Methods("GET")
 	r.HandleFunc("/cpropiedad/{id}", routes.GetCategoriaPropiedadHandler).Methods("GET")
 	r.HandleFunc("/cpropiedad", routes.PostCategoriaPropiedadHandler).Methods("POST")
 	r.HandleFunc("/cpropiedad/{id}", routes.DeleteCategoriaPropiedadesHandler).Methods("DELETE")
 
-	// bitacora acceso
+	// Bitacora acceso
 	r.HandleFunc("/bitacceso", routes.GetBitacoraAccesosHandler).Methods("GET")
 	r.HandleFunc("/bitacceso/{id}", routes.GetBitacoraAccesoHandler).Methods("GET")
 	r.HandleFunc("/bitacceso", routes.PostBitacoraAccesoHandler).Methods("POST")
 	r.HandleFunc("/bitacceso/{id}", routes.DeleteBitacoraAccesosHandler).Methods("DELETE")
 
-	// bitacora actividad
+	// Bitacora actividad
 	r.HandleFunc("/bitactividad", routes.GetBitacoraActividadesHandler).Methods("GET")
 	r.HandleFunc("/bitactividad/{id}", routes.GetBitacoraActividadHandler).Methods("GET")
 	r.HandleFunc("/bitactividad", routes.PostBitacoraActividadHandler).Methods("POST")
@@ -214,7 +209,16 @@ func main() {
 	r.HandleFunc("/segcasas", routes.PostSeguimientoCasaHandler).Methods("POST")
 	r.HandleFunc("/segcasas/{id}", routes.DeleteSeguimientoCasasHandler).Methods("DELETE")
 
-	// Iniciar el servidor
-	log.Println("Starting server on :3000")
-	http.ListenAndServe(":3000", r)
+	// Configurar CORS
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"}, // Permitir todos los orígenes, puedes cambiarlo a los orígenes específicos que necesites
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
+		AllowedHeaders:   []string{"Content-Type", "Authorization"},
+		AllowCredentials: true,
+	})
+
+	// Iniciar el servidor con el middleware de CORS
+	handler := c.Handler(r)
+	log.Println("Starting server on :3001")
+	http.ListenAndServe(":3001", handler)
 }
